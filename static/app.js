@@ -27,7 +27,9 @@ function addRandomBooks(numberOfBooks) {
 addRandomBooks(10);
 
 function displayBooks(arrayOfBooks) {
-  for (const [index, book] of arrayOfBooks.entries()) {  
+  // for (const [index, book] of arrayOfBooks.entries()) {  
+  for (let i = arrayOfBooks.length - 1; i >= 0; i--) {
+    const book = arrayOfBooks[i];
     // add li element 'book'
     const listElement = document.createElement('li');
     listElement.classList.add('book');
@@ -55,8 +57,7 @@ function displayBooks(arrayOfBooks) {
 
         // button to finish 'book__button' (book__button--disabled)
         const finish = document.createElement('button');
-        console.log(index);
-        finish.classList.add('book__button');        
+        finish.classList.add('book__button');                
         finish.textContent = 'Finish';
         if (book.finished) { 
           finish.classList.add('book_button--disabled')           
