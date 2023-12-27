@@ -16,13 +16,23 @@ function addBookToLibrary(book) {
 
 function addRandomBooks(numberOfBooks) {
   for (let i = 0; i < numberOfBooks; i++) {
-    const book = new Book(`Nice book ${i+1}`, `Great author ${i+1}`, Math.floor(Math.random() * 490) + 10);
+    const book = new Book(`Nice book ${getLastNumber(myLibrary) + 1}`, `Great author ${getLastNumber(myLibrary) + 1}`, Math.floor(Math.random() * 490) + 10);
     addBookToLibrary(book);
   }
-  console.log('books added:');
-  for (const book of myLibrary) {
-    console.log(`${book.title} ${book.author} ${book.pages}`);    
+  // console.log('books added:');
+  // for (const book of myLibrary) {
+  //   console.log(`${book.title} ${book.author} ${book.pages}`);    
+  // }
+}
+
+function getLastNumber(arrayOfBooks) {
+  let lastNumber = 0;
+  if (arrayOfBooks.length > 0) {
+    const book = arrayOfBooks.slice(-1)[0];
+    lastNumber = +book.title.split(' ').slice(-1)[0];
+    // console.log(lastNumber);
   }
+  return lastNumber;
 }
 
 addRandomBooks(10);
