@@ -19,9 +19,58 @@ function addRandomBooks(numberOfBooks) {
     addBookToLibrary(book);
   }
   console.log('books added:');
-  for (let book of myLibrary) {
+  for (const book of myLibrary) {
     console.log(`${book.title} ${book.author} ${book.pages}`);    
   }
 }
 
 addRandomBooks(10);
+
+function displayBooks(arrayOfBooks) {
+  for (const [index, book] of arrayOfBooks.entries()) {  
+    // add li element 'book'
+    const listElement = document.createElement('li');
+    listElement.classList.add('book');
+      // add article element inside 'book__article'
+      const bookArticle = document.createElement('article');
+      bookArticle.classList.add('book__article');
+      listElement.appendChild(bookArticle);
+      
+        // add p elements for title, author, pages and reading status 'book__*'
+        const title = document.createElement('p');
+        title.classList.add('book__p');
+        title.textContent = `Title: ${book.title}`;
+
+        const author = document.createElement('p');
+        author.classList.add('book__p');
+        author.textContent = `Author: ${book.author}`;
+
+        const pages = document.createElement('p');
+        pages.classList.add('book__p');
+        pages.textContent = `Pages: ${book.pages}`;
+
+        const finished = document.createElement('p');
+        finished.classList.add('book__p');        
+        finished.textContent = `${book.finished ? 'Book is already finished' : "Book haven't finished"}`;      
+
+        // button to finish 'book__button' (book__button--disabled)
+        const finish = document.createElement('button');
+        console.log(index);
+        finish.classList.add('book__button');        
+        finish.textContent = 'Finish';
+        if (book.finished) { 
+          finish.classList.add('book_button--disabled')           
+        };
+
+        // button to delete 'book__button book__button--red
+        const deleteBook = document.createElement('button');
+        deleteBook.textContent = 'Delete';
+        deleteBook.classList.add('book__button', 'book__button--red');
+        
+        bookArticle.append(title, author, pages, finished, finish, deleteBook);
+
+        bookList.appendChild(listElement);
+  }
+}
+
+displayBooks(myLibrary);
