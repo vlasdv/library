@@ -94,13 +94,13 @@ newBookButton.onclick = function() {
 
 // When the user clicks on <span> (x), close the modal
 closeModalButton.onclick = function() {
-  modal.style.display = 'none';
+  dismissForm(form);
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
   if (event.target == modal) {
-    modal.style.display = 'none';
+    dismissForm(form);
   }
 }
 
@@ -113,5 +113,10 @@ submitModalButton.addEventListener('click', function(event) {
       console.log('boolean of ' + radio.value + ' is: ' + Boolean(+radio.value));
     }  
   }
-  modal.style.display = 'none';
+  dismissForm(form);
 });
+
+function dismissForm(form) {
+  form.reset();
+  modal.style.display = 'none';
+}
