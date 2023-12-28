@@ -60,31 +60,44 @@ function displayBooks(arrayOfBooks) {
 
     // button to finish 'book__button' (book__button--disabled)
     const finish = document.createElement('button');
-    finish.classList.add('book__button');                
-    finish.textContent = 'Finish';
+    finish.textContent = book.finished ? 'Read again' : 'Finish';
+    finish.classList.add('book__button');                    
     if (book.finished) { 
-      finish.classList.add('book_button--disabled')           
-    };
+      finish.classList.add('book_button--disabled');      
+    };    
+    finish.addEventListener('click', function() {      
+      const toFinish = getBookIndexInArray(book, myLibrary);
+      finish.classList.toggle('book_button--disabled');
+      myLibrary[toFinish].finished = !myLibrary[toFinish].finished;            
+      displayBooks(myLibrary);   
+    });
 
     // button to delete 'book__button book__button--red
     const deleteBook = document.createElement('button');    
-    deleteBook.addEventListener('click', function() {      
-      for (let [i, bookToDelete] of myLibrary.entries()) {
-        if (bookToDelete.id === book.id) {
-          myLibrary.splice(i, 1);
-          console.log('deleted');
-          displayBooks(myLibrary);
-          break;
-        }
-      }
-    });
     deleteBook.textContent = 'Delete';
     deleteBook.classList.add('book__button', 'book__button--red');
+    deleteBook.addEventListener('click', function() {    
+      const toDelete = getBookIndexInArray(book, myLibrary);  
+      if (toDelete !== null) {
+        myLibrary.splice(toDelete, 1);
+        console.log('deleted');
+        displayBooks(myLibrary);      
+      }
+    });
     
     bookArticle.append(title, author, pages, finished, finish, deleteBook);
 
     bookList.appendChild(listElement);
   }
+}
+
+function getBookIndexInArray(bookToSearch, array) {
+  for (let [i, currentBook] of myLibrary.entries()) {
+    if (currentBook.id === bookToSearch.id) {
+      return i;
+    }
+  }
+  return null;
 }
 
 displayBooks(myLibrary);
