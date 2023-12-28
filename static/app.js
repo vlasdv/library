@@ -1,4 +1,5 @@
 const bookList = document.querySelector('.books');
+const newBookButton = document.querySelector('.container__button');
 const myLibrary = [];
 let id = 0;
 
@@ -105,7 +106,6 @@ displayBooks(myLibrary);
 // Get the modal
 const modal = document.querySelector('.modal');
 const form = document.querySelector('.modal_form');
-const newBookButton = document.querySelector('.books__button');
 const closeModalButton = document.querySelector('.modal__button-close');
 const submitModalButton = document.querySelector('.modal__button-submit');
 
