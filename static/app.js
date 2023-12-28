@@ -1,11 +1,13 @@
 const bookList = document.querySelector('.books');
 const myLibrary = [];
+let id = 0;
 
-function Book(title, author, pages) {
+function Book(title, author, pages, finished=false, id) {
   this.title = title;
   this.author = author;
   this.pages = pages;
-  this.finished = false;
+  this.finished = finished;
+  this.id = id;
 }
 
 function addBookToLibrary(book) {
@@ -14,7 +16,7 @@ function addBookToLibrary(book) {
 
 function addRandomBooks(numberOfBooks) {
   for (let i = 0; i < numberOfBooks; i++) {
-    const book = new Book(`Nice book ${i+1}`, `Great author ${i+1}`, Math.floor(Math.random() * 490) + 10);
+    const book = new Book(`Nice book ${i+1}`, `Great author ${i+1}`, Math.floor(Math.random() * 490) + 10, false, id++);
     addBookToLibrary(book);
   }
   console.log('books added:');
@@ -26,6 +28,8 @@ function addRandomBooks(numberOfBooks) {
 addRandomBooks(10);
 
 function displayBooks(arrayOfBooks) {
+  bookList.replaceChildren();
+  console.log(myLibrary.length);
   // for (const [index, book] of arrayOfBooks.entries()) {  
   for (let i = arrayOfBooks.length - 1; i >= 0; i--) {
     const book = arrayOfBooks[i];
@@ -108,11 +112,19 @@ submitModalButton.addEventListener('click', function(event) {
   event.preventDefault();
   console.log(formTitle.value, formAuthor.value, formPages.value);
 
+  let finishedValue = false;
   for (let radio of finished) {
     if (radio.checked) {
       console.log('boolean of ' + radio.value + ' is: ' + Boolean(+radio.value));
+      finishedValue = Boolean(+radio.value);
     }  
   }
+
+  const book = new Book(formTitle.value, formAuthor.value, formPages.value, finishedValue, id++);
+  myLibrary.push(book);
+  console.log('id: ' + book.id);
+
+  displayBooks(myLibrary);
   dismissForm(form);
 });
 
