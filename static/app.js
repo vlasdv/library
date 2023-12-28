@@ -77,22 +77,41 @@ displayBooks(myLibrary);
 
 // Get the modal
 const modal = document.querySelector('.modal');
+const form = document.querySelector('.modal_form');
 const newBookButton = document.querySelector('.books__button');
-const closeModalButton = document.querySelector('.modal__close-button');
+const closeModalButton = document.querySelector('.modal__button-close');
+const submitModalButton = document.querySelector('.modal__button-submit');
+
+const formTitle = document.querySelector('#title');
+const formAuthor = document.querySelector('#author');
+const formPages = document.querySelector('#pages');
+const finished = document.getElementsByName('finished');
 
 // When the user clicks on the button, open the modal 
 newBookButton.onclick = function() {
-  modal.style.display = "block";
+  modal.style.display = 'block';
 }
 
 // When the user clicks on <span> (x), close the modal
 closeModalButton.onclick = function() {
-  modal.style.display = "none";
+  modal.style.display = 'none';
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
   if (event.target == modal) {
-    modal.style.display = "none";
+    modal.style.display = 'none';
   }
 }
+
+submitModalButton.addEventListener('click', function(event) {
+  event.preventDefault();
+  console.log(formTitle.value, formAuthor.value, formPages.value);
+
+  for (let radio of finished) {
+    if (radio.checked) {
+      console.log('boolean of ' + radio.value + ' is: ' + Boolean(+radio.value));
+    }  
+  }
+  modal.style.display = 'none';
+});

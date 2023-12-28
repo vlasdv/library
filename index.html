@@ -17,8 +17,27 @@
     </ul>
     <div id="myModal" class="modal">
       <div class="modal__content">
-        <span class="modal__close-button">&times;</span>
-        <p >TEST</p>
+        <form action="#" class="modal_form">
+          <h2>Add new book.</h2>
+          <label for="title" class="modal___label">Book title:</label>
+          <input type="text" class="modal__input" id="title" name="title" placeholder="title of the book">
+          <label for="author" class="modal___label">Book author:</label>
+          <input type="text" class="modal__input" id="author" name="author" placeholder="book's author">
+          <label for="pages" class="modal___label">Book author:</label>
+          <input type="tel" class="modal__input" id="pages" name="pages" placeholder="number of pages">
+          <fieldset>
+            <legend>Have you already read this book?</legend>
+            <label for="radio-yes" class="modal___label">Yes</label>
+            <input type="radio" id="radio-yes" name="finished" value="1">
+            <label for="radio-no" class="modal___label">No</label>
+            <input type="radio" id="radio-no" name="finished" value="0" checked>
+          </fieldset>
+          
+          <button class="modal__button modal__button-submit" type="submit">Save</button>  
+          <button class="modal__button modal__button-close" type="submit">Cancel</button>  
+        </form>
+
+        
       </div>
     </div>    
   </main>
