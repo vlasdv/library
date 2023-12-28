@@ -144,7 +144,7 @@ submitModalButton.addEventListener('click', function(event) {
   }
 
   const book = new Book(formTitle.value, formAuthor.value, formPages.value, finishedValue, id++);
-  myLibrary.push(book);
+  addBookToLibrary(book);
   console.log('id: ' + book.id);
 
   displayBooks(myLibrary);
