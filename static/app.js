@@ -1,4 +1,4 @@
-const bookList = document.querySelector('#books');
+const bookList = document.querySelector('.books');
 
 const myLibrary = [];
 
@@ -33,44 +33,44 @@ function displayBooks(arrayOfBooks) {
     // add li element 'book'
     const listElement = document.createElement('li');
     listElement.classList.add('book');
-      // add article element inside 'book__article'
-      const bookArticle = document.createElement('article');
-      bookArticle.classList.add('book__article');
-      listElement.appendChild(bookArticle);
-      
-        // add p elements for title, author, pages and reading status 'book__*'
-        const title = document.createElement('p');
-        title.classList.add('book__p');
-        title.textContent = `Title: ${book.title}`;
+    // add article element inside 'book__article'
+    const bookArticle = document.createElement('article');
+    bookArticle.classList.add('book__article');
+    listElement.appendChild(bookArticle);
+    
+      // add p elements for title, author, pages and reading status 'book__*'
+    const title = document.createElement('p');
+    title.classList.add('book__p');
+    title.textContent = `Title: ${book.title}`;
 
-        const author = document.createElement('p');
-        author.classList.add('book__p');
-        author.textContent = `Author: ${book.author}`;
+    const author = document.createElement('p');
+    author.classList.add('book__p');
+    author.textContent = `Author: ${book.author}`;
 
-        const pages = document.createElement('p');
-        pages.classList.add('book__p');
-        pages.textContent = `Pages: ${book.pages}`;
+    const pages = document.createElement('p');
+    pages.classList.add('book__p');
+    pages.textContent = `Pages: ${book.pages}`;
 
-        const finished = document.createElement('p');
-        finished.classList.add('book__p');        
-        finished.textContent = `${book.finished ? 'Book is already finished' : "Book haven't finished"}`;      
+    const finished = document.createElement('p');
+    finished.classList.add('book__p');        
+    finished.textContent = `${book.finished ? 'Book is already finished' : "Book haven't finished"}`;      
 
-        // button to finish 'book__button' (book__button--disabled)
-        const finish = document.createElement('button');
-        finish.classList.add('book__button');                
-        finish.textContent = 'Finish';
-        if (book.finished) { 
-          finish.classList.add('book_button--disabled')           
-        };
+    // button to finish 'book__button' (book__button--disabled)
+    const finish = document.createElement('button');
+    finish.classList.add('book__button');                
+    finish.textContent = 'Finish';
+    if (book.finished) { 
+      finish.classList.add('book_button--disabled')           
+    };
 
-        // button to delete 'book__button book__button--red
-        const deleteBook = document.createElement('button');
-        deleteBook.textContent = 'Delete';
-        deleteBook.classList.add('book__button', 'book__button--red');
-        
-        bookArticle.append(title, author, pages, finished, finish, deleteBook);
+    // button to delete 'book__button book__button--red
+    const deleteBook = document.createElement('button');
+    deleteBook.textContent = 'Delete';
+    deleteBook.classList.add('book__button', 'book__button--red');
+    
+    bookArticle.append(title, author, pages, finished, finish, deleteBook);
 
-        bookList.appendChild(listElement);
+    bookList.appendChild(listElement);
   }
 }
 
