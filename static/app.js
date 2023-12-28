@@ -67,7 +67,17 @@ function displayBooks(arrayOfBooks) {
     };
 
     // button to delete 'book__button book__button--red
-    const deleteBook = document.createElement('button');
+    const deleteBook = document.createElement('button');    
+    deleteBook.addEventListener('click', function() {      
+      for (let [i, bookToDelete] of myLibrary.entries()) {
+        if (bookToDelete.id === book.id) {
+          myLibrary.splice(i, 1);
+          console.log('deleted');
+          displayBooks(myLibrary);
+          break;
+        }
+      }
+    });
     deleteBook.textContent = 'Delete';
     deleteBook.classList.add('book__button', 'book__button--red');
     
