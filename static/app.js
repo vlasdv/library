@@ -124,7 +124,7 @@ displayBooks(myLibrary);
 
 // Get the modal
 const modal = document.querySelector('.modal');
-const form = document.querySelector('.modal_form');
+const form = document.querySelector('.modal__form');
 const closeModalButton = document.querySelector('.modal__button-close');
 const submitModalButton = document.querySelector('.modal__button-submit');
 

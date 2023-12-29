@@ -16,20 +16,26 @@
     </ul>
     <div id="myModal" class="modal">
       <div class="modal__content">
-        <form action="#" class="modal_form">
+        <form action="#" class="modal__form">
           <h2>Add new book.</h2>
-          <label for="title" class="modal___label">Book title:</label>
-          <input type="text" class="modal__input" id="title" name="title" placeholder="title of the book">
-          <label for="author" class="modal___label">Book author:</label>
-          <input type="text" class="modal__input" id="author" name="author" placeholder="book's author">
-          <label for="pages" class="modal___label">Book author:</label>
-          <input type="tel" class="modal__input" id="pages" name="pages" placeholder="number of pages">
-          <fieldset>
-            <legend>Have you already read this book?</legend>
-            <label for="radio-yes" class="modal___label">Yes</label>
-            <input type="radio" id="radio-yes" name="finished" value="1">
-            <label for="radio-no" class="modal___label">No</label>
-            <input type="radio" id="radio-no" name="finished" value="0" checked>
+          <div class="modal__input-block">
+            <label for="title" class="modal__label">Book title:</label>
+            <input type="text" class="modal__input" id="title" name="title" placeholder="title of the book">
+          </div>
+          <div class="modal__input-block">
+            <label for="author" class="modal__label">Book author:</label>
+            <input type="text" class="modal__input" id="author" name="author" placeholder="book's author">
+          </div>
+          <div class="modal__input-block">
+            <label for="pages" class="modal__label">Book author:</label>
+            <input type="tel" class="modal__input" id="pages" name="pages" placeholder="number of pages">
+          </div>
+          <fieldset class="modal__fieldset">
+            <legend class="modal__legend">Have you already read this book?</legend>            
+            <label for="radio-yes" class="modal__label">Yes</label>
+            <input class="modal__radio" type="radio" id="radio-yes" name="finished" value="1">
+            <label for="radio-no" class="modal__label">No</label>
+            <input class="modal__radio" type="radio" id="radio-no" name="finished" value="0" checked>            
           </fieldset>
           
           <button class="modal__button modal__button-submit" type="submit">Save</button>  

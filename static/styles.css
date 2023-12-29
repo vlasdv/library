@@ -130,24 +130,75 @@ button {
 
 /* Modal Content/Box */
 .modal__content {
-  background-color: #fefefe;
+  background-color: var(--lightest-color);
+  border-radius: 10px;
+  max-width: 400px; 
   margin: 15% auto; 
   padding: 20px;
-  border: 1px solid #888;
-  width: 80%; 
+  /* border: 1px solid #888;   */
 }
 
-/* The Close Button */
-.modal__close-button {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+.modal__form {
+  display: grid;
+  gap: 20px;
 }
 
-.modal__close-button:hover,
-.modal__close-button:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
+.modal__input-block {
+  display: grid;
+  gap: 5px;
 }
+
+.modal__label {
+  padding-left: 10px;
+}
+
+.modal__input {
+  height: 50px;
+  border-radius: 5px;
+  border: 1px solid;
+  padding: 5px 15px;
+  font-size: 1rem;
+}
+
+.modal__fieldset {
+  position: relative;
+  /* border: none; */
+  padding: 8px;
+  border: 1px dashed;
+  border-radius: 5px;
+}
+
+.modal__radio {
+  appearance: none;
+
+  height: 20px;
+  width: 20px;    
+  border-radius: 50%;
+  border: 1px solid var(--main-color-darker);
+
+  /* Adjusts the position of the checkboxes on the text baseline */
+  vertical-align: -4px;
+  outline: none;
+}
+
+.modal__radio::before {
+  display: block;
+  content: " ";
+
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--main-color);
+  
+  /* font-size: 1.2rem; */
+  transform: translate(4px, 4px) scale(0);
+  transform-origin: center;
+  transition: all 0.3s ease-in;
+}
+
+.modal__radio:checked::before {
+  /* 20px - (10px radio size) - (1px border * 2) = 8 / 2 = 4px */ 
+  transform: translate(4px, 4px) scale(1);
+  transition: all 0.3s cubic-bezier(0.25, 0.25, 0.56, 2);
+}
+
