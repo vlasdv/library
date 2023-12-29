@@ -86,7 +86,7 @@ function displayBooks(arrayOfBooks) {
 
     finish.addEventListener('click', function() {      
       const toFinish = getBookIndexInArray(book, myLibrary);
-      finish.classList.toggle('book_button--disabled');
+      finish.classList.toggle('book__button--disabled');
       myLibrary[toFinish].finished = !myLibrary[toFinish].finished;            
       displayBooks(myLibrary);   
     });
@@ -94,7 +94,7 @@ function displayBooks(arrayOfBooks) {
     // button to delete 'book__button book__button--red
     const deleteBook = document.createElement('button');    
     deleteBook.textContent = 'Delete';
-    deleteBook.classList.add('book__button', 'book__button--red');
+    deleteBook.classList.add('book__button', 'book__button--delete');
     deleteBook.addEventListener('click', function() {    
       const toDelete = getBookIndexInArray(book, myLibrary);  
       if (toDelete !== null) {

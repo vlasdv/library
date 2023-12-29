@@ -1,10 +1,17 @@
 html {
   font-size: 16px;
-  background-color: #aaa;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
-  --button-color: #eee;
-  --button-color-hover: #ddd;
+  --main-color: #69d2e7;
+  --main-color-darker: #4492d5;
+  --disabled-button: #aaa;
+  --disabled-button-hover: #888;
+  --lightest-color: #fafafa;
+  --red-color: #EA2027;
+  --card-color: #e9f0f1;
+  --backdrop-color: #ffffff;
+  --accent-button: #fb799c;
+  --accent-button-darker: #ec4773;
 }
 
 * {
@@ -14,51 +21,55 @@ html {
 }
 
 button {
-  border: 1px solid;
+  border: none;
   border-radius: 5px;  
-  background-color: var(--button-color);
   font-size: 1rem;
+  font-weight: 600;
   padding: 10px;
 }
 
-button:hover {
-  background-color: var(--button-color-hover);
-}
-
 .container {
-  margin: 20px;
   padding: 30px;
   overflow: scroll;
 
-  min-height: calc(100vh - 40px);
-  background-color: #fff;
-  border-radius: 10px;  
+  min-height: 100vh;
+  background-color: var(--backdrop-color);  
   
   display: grid;  
   gap: 30px;
   grid-template-rows: 30px 50px 1fr;
 }
 
+.container__button,
+.modal__button {
+  background-color: var(--accent-button);
+  color: var(--lightest-color);
+}
+
+.container__button:hover,
+.modal__button:hover {
+  background-color: var(--accent-button-darker);
+}
+
 .book {
   display: grid;
+  border-radius: 5px;
+  background-color: var(--card-color);
 }
 
 .books {
   list-style: none;
   display: grid;
   gap: 20px;
-  grid-template-columns: repeat(auto-fit, 250px);  
-  grid-template-rows: repeat(auto-fit, 350px);
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));  
+  grid-template-rows: repeat(auto-fit, minmax(350px, 1fr));
 }
 
 .book__article {  
   padding: 20px;
   display: grid;
   align-content: space-between;
-
   gap: 10px;
-  border: 1px solid;
-  border-radius: 5px;
 }
 
 .book__texts,
@@ -67,9 +78,29 @@ button:hover {
   gap: 10px;
 }
 
-.book__button--disabled {
-  background-color: #eee;
-  color: var(--button-color-hover);
+.book__button {  
+  background-color: var(--main-color);  
+  color: var(--lightest-color);  
+}
+
+.book__button:hover {
+  background-color: var(--main-color-darker);
+}
+
+.book__button--disabled {  
+  background-color: var(--disabled-button);  
+}
+
+.book__button--disabled:hover {
+  background-color: var(--disabled-button-hover);
+}
+
+.book__button--delete {
+  background-color: var(--main-color-darker);
+}
+
+.book__button--delete:hover {
+  background-color: var(--red-color);
 }
 
 .book__p {
@@ -82,7 +113,6 @@ button:hover {
   font-style: italic;
   /* color: var(--button-color-hover); */
 }
-
 
 /* The Modal (background) */
 .modal {
