@@ -1,12 +1,201 @@
+html {
+  font-size: 16px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  --main-color: #69d2e7;
+  --main-color-darker: #4492d5;
+  --disabled-button: #aaa;
+  --disabled-button-hover: #888;
+  --lightest-color: #fafafa;
+  --red-color: #EA2027;
+  --card-color: #e9f0f1;
+  --backdrop-color: #ffffff;
+  --accent-button: #fb799c;
+  --accent-button-darker: #ec4773;
+}
+
 * {
   margin: 0;
   padding: 0;  
+  box-sizing: border-box;
 }
 
-html {
-  font-size: 16px;
+button {
+  border: none;
+  border-radius: 5px;  
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 10px;
 }
 
-main {
-  margin: 20px;
+.container {
+  padding: 30px;  
+
+  min-height: 100vh;
+  background-color: var(--backdrop-color);  
+  
+  display: grid;  
+  gap: 30px;
+  grid-template-rows: 30px 50px 1fr;
 }
+
+.container__button,
+.modal__button {
+  background-color: var(--accent-button);
+  color: var(--lightest-color);
+}
+
+.container__button:hover,
+.modal__button:hover {
+  background-color: var(--accent-button-darker);
+}
+
+.books {
+  list-style: none;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 25%));  
+  grid-template-rows: repeat(auto-fit, 350px);  
+  justify-content: center;
+}
+
+
+.book {    
+  display: grid;
+  border-radius: 5px;
+  background-color: var(--card-color);
+}
+
+.book__article {  
+  padding: 20px;
+  display: grid;
+  align-content: space-between;
+  gap: 10px;
+}
+
+.book__texts,
+.book__buttons {
+  display: grid;
+  gap: 10px;
+}
+
+.book__button {  
+  background-color: var(--main-color);  
+  color: var(--lightest-color);  
+}
+
+.book__button:hover {
+  background-color: var(--main-color-darker);
+}
+
+.book__button--disabled {  
+  background-color: var(--disabled-button);  
+}
+
+.book__button--disabled:hover {
+  background-color: var(--disabled-button-hover);
+}
+
+.book__button--delete {
+  background-color: var(--main-color-darker);
+}
+
+.book__button--delete:hover {
+  background-color: var(--red-color);
+}
+
+.book__p {
+  overflow: scroll;
+  text-align: start;
+}
+
+.book__p--finished {
+  text-align: center;
+  font-style: italic;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: #000000;
+  background-color: #00000066;
+}
+
+/* Modal Content/Box */
+.modal__content {
+  background-color: var(--lightest-color);
+  border-radius: 10px;
+  max-width: 400px; 
+  margin: 15% auto; 
+  padding: 20px;
+}
+
+.modal__form {
+  display: grid;
+  gap: 20px;
+}
+
+.modal__input-block {
+  display: grid;
+  gap: 5px;
+}
+
+.modal__label {
+  padding-left: 10px;
+}
+
+.modal__input {
+  height: 50px;
+  border-radius: 5px;
+  border: 1px solid;
+  padding: 5px 15px;
+  font-size: 1rem;
+}
+
+.modal__fieldset {
+  position: relative;
+  padding: 8px;
+  border: 1px dashed;
+  border-radius: 5px;
+}
+
+.modal__radio {
+  appearance: none;
+
+  height: 20px;
+  width: 20px;    
+  border-radius: 50%;
+  border: 1px solid var(--main-color-darker);
+
+  /* Adjusts the position of the checkboxes on the text baseline */
+  vertical-align: -4px;
+  outline: none;
+}
+
+.modal__radio::before {
+  display: block;
+  content: " ";
+
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--main-color);
+  
+  transform: translate(4px, 4px) scale(0);
+  transform-origin: center;
+  transition: all 0.3s ease-in;
+}
+
+.modal__radio:checked::before {
+  /* 20px - (10px radio size) - (1px border * 2) = 8 / 2 = 4px */ 
+  transform: translate(4px, 4px) scale(1);
+  transition: all 0.3s cubic-bezier(0.25, 0.25, 0.56, 2);
+}
+

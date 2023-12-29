@@ -8,10 +8,43 @@
   <script src="static/app.js" defer></script>
 </head>
 <body>
-  <main>
-    <h1>Library:</h1>
+  <main class="container">
+    <h1 class="container__header">Library:</h1>
+    <button class="container__button container__button--new-book">NEW BOOK</button>
     <ul class="books">   
+
     </ul>
+    <div id="myModal" class="modal">
+      <div class="modal__content">
+        <form action="#" class="modal__form">
+          <h2>Add new book:</h2>
+          <div class="modal__input-block">
+            <label for="title" class="modal__label">Book title:</label>
+            <input type="text" class="modal__input" id="title" name="title" placeholder="title of the book">
+          </div>
+          <div class="modal__input-block">
+            <label for="author" class="modal__label">Book author:</label>
+            <input type="text" class="modal__input" id="author" name="author" placeholder="book's author">
+          </div>
+          <div class="modal__input-block">
+            <label for="pages" class="modal__label">Book author:</label>
+            <input type="tel" class="modal__input" id="pages" name="pages" placeholder="number of pages">
+          </div>
+          <fieldset class="modal__fieldset">
+            <legend class="modal__legend">Have you already read this book?</legend>            
+            <label for="radio-yes" class="modal__label">Yes</label>
+            <input class="modal__radio" type="radio" id="radio-yes" name="finished" value="1">
+            <label for="radio-no" class="modal__label">No</label>
+            <input class="modal__radio" type="radio" id="radio-no" name="finished" value="0" checked>            
+          </fieldset>
+          
+          <button class="modal__button modal__button-submit" type="submit">Save</button>  
+          <button class="modal__button modal__button-close" type="submit">Cancel</button>  
+        </form>
+
+        
+      </div>
+    </div>    
   </main>
 </body>
 </html>
