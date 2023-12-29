@@ -42,30 +42,48 @@ function displayBooks(arrayOfBooks) {
     bookArticle.classList.add('book__article');
     listElement.appendChild(bookArticle);
     
-      // add p elements for title, author, pages and reading status 'book__*'
+    const textsDiv = document.createElement('div');
+    textsDiv.classList.add('book__texts');
+
+    // add p elements for title, author, pages and reading status 'book__*'
+    const titleLabel = document.createElement('h4');
+    titleLabel.classList.add('book__label');
+    titleLabel.textContent = 'Title:';
     const title = document.createElement('p');
     title.classList.add('book__p');
-    title.textContent = `Title: ${book.title}`;
+    title.textContent = book.title;
 
+    const authorLabel = document.createElement('h4');
+    authorLabel.classList.add('book__label');
+    authorLabel.textContent = 'Author:';
     const author = document.createElement('p');
     author.classList.add('book__p');
-    author.textContent = `Author: ${book.author}`;
+    author.textContent = book.author;
 
+    const pagesLabel = document.createElement('h4');
+    pagesLabel.classList.add('book__label');
+    pagesLabel.textContent = 'Pages:';
     const pages = document.createElement('p');
     pages.classList.add('book__p');
-    pages.textContent = `Pages: ${book.pages}`;
+    pages.textContent = `${book.pages}`;
 
     const finished = document.createElement('p');
-    finished.classList.add('book__p');        
+    finished.classList.add('book__p', 'book__p--finished');        
     finished.textContent = `${book.finished ? 'Book is already finished' : "Book haven't finished"}`;      
+
+    textsDiv.append(titleLabel, title, authorLabel, author, pagesLabel, pages);
+    
+    const buttonsDiv = document.createElement('div');
+    buttonsDiv.classList.add('book__buttons');
 
     // button to finish 'book__button' (book__button--disabled)
     const finish = document.createElement('button');
     finish.textContent = book.finished ? 'Read again' : 'Finish';
     finish.classList.add('book__button');                    
     if (book.finished) { 
-      finish.classList.add('book_button--disabled');      
+      finish.classList.add('book__button--disabled');      
     };    
+
     finish.addEventListener('click', function() {      
       const toFinish = getBookIndexInArray(book, myLibrary);
       finish.classList.toggle('book_button--disabled');
@@ -85,8 +103,9 @@ function displayBooks(arrayOfBooks) {
         displayBooks(myLibrary);      
       }
     });
+    buttonsDiv.append(finished, finish, deleteBook);
     
-    bookArticle.append(title, author, pages, finished, finish, deleteBook);
+    bookArticle.append(textsDiv, buttonsDiv);
 
     bookList.appendChild(listElement);
   }

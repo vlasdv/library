@@ -1,27 +1,88 @@
+html {
+  font-size: 16px;
+  background-color: #aaa;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  --button-color: #eee;
+  --button-color-hover: #ddd;
+}
+
 * {
   margin: 0;
   padding: 0;  
+  box-sizing: border-box;
 }
 
-html {
-  font-size: 16px;
+button {
+  border: 1px solid;
+  border-radius: 5px;  
+  background-color: var(--button-color);
+  font-size: 1rem;
+  padding: 10px;
 }
 
-main {
-  margin: 20px;
+button:hover {
+  background-color: var(--button-color-hover);
 }
 
 .container {
+  margin: 20px;
+  padding: 30px;
+  overflow: scroll;
+
+  min-height: calc(100vh - 40px);
+  background-color: #fff;
+  border-radius: 10px;  
+  
   display: grid;  
   gap: 30px;
+  grid-template-rows: 30px 50px 1fr;
+}
+
+.book {
+  display: grid;
 }
 
 .books {
+  list-style: none;
   display: grid;
-  gap: 30px;
-  grid-template-columns: repeat(auto-fit, 200px);
-
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, 250px);  
+  grid-template-rows: repeat(auto-fit, 350px);
 }
+
+.book__article {  
+  padding: 20px;
+  display: grid;
+  align-content: space-between;
+
+  gap: 10px;
+  border: 1px solid;
+  border-radius: 5px;
+}
+
+.book__texts,
+.book__buttons {
+  display: grid;
+  gap: 10px;
+}
+
+.book__button--disabled {
+  background-color: #eee;
+  color: var(--button-color-hover);
+}
+
+.book__p {
+  overflow: scroll;
+  text-align: start;
+}
+
+.book__p--finished {
+  text-align: center;
+  font-style: italic;
+  /* color: var(--button-color-hover); */
+}
+
 
 /* The Modal (background) */
 .modal {
