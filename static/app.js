@@ -32,8 +32,7 @@ function addRandomBooks(numberOfBooks) {
 }
 
 function displayBooks(arrayOfBooks) {
-  bookList.replaceChildren();
-  console.log(myLibrary.length);
+  bookList.replaceChildren();  
   for (let i = arrayOfBooks.length - 1; i >= 0; i--) {
     const book = arrayOfBooks[i];
     
@@ -103,7 +102,7 @@ function displayBooks(arrayOfBooks) {
       const toDelete = getBookIndexInArray(book, myLibrary);  
       if (toDelete !== null) {
         myLibrary.splice(toDelete, 1);
-        console.log('deleted');
+        // console.log('deleted');
         displayBooks(myLibrary);      
       }
     });
@@ -153,24 +152,28 @@ window.onclick = function(event) {
   }
 }
 
-submitModalButton.addEventListener('click', function(event) {
-  event.preventDefault();
-  console.log(formTitle.value, formAuthor.value, formPages.value);
+formPages.addEventListener('input', function() {
+  formPages.pattern = '^[1-9][0-9]*$';  
+  formPages.setCustomValidity('');  
+  if (!formPages.checkValidity()) {
+    console.log('1');
+    formPages.setCustomValidity('expected whole positive number > 0');
+  } 
+});
 
-  let finishedValue = false;
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
+
   for (let radio of finished) {
     if (radio.checked) {
-      console.log('boolean of ' + radio.value + ' is: ' + Boolean(+radio.value));
       finishedValue = Boolean(+radio.value);
     }  
-  }
-
+  } 
   const book = new Book(formTitle.value, formAuthor.value, formPages.value, finishedValue, id++);
-  addBookToLibrary(book);
-  console.log('id: ' + book.id);
-
+  addBookToLibrary(book);  
   displayBooks(myLibrary);
   dismissForm(form);
+  // }  
 });
 
 function dismissForm(form) {

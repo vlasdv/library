@@ -159,6 +159,10 @@ button {
   font-size: 1rem;
 }
 
+.modal__input:invalid {
+  border-color: #EA2027;
+}
+
 .modal__fieldset {
   position: relative;
   padding: 8px;

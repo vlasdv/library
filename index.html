@@ -20,15 +20,15 @@
           <h2>Add new book:</h2>
           <div class="modal__input-block">
             <label for="title" class="modal__label">Book title:</label>
-            <input type="text" class="modal__input" id="title" name="title" placeholder="title of the book">
+            <input type="text" class="modal__input" id="title" name="title" placeholder="title of the book" required>
           </div>
           <div class="modal__input-block">
             <label for="author" class="modal__label">Book author:</label>
-            <input type="text" class="modal__input" id="author" name="author" placeholder="book's author">
+            <input type="text" class="modal__input" id="author" name="author" placeholder="book's author" required>
           </div>
           <div class="modal__input-block">
             <label for="pages" class="modal__label">Book author:</label>
-            <input type="tel" class="modal__input" id="pages" name="pages" placeholder="number of pages">
+            <input type="tel" class="modal__input" id="pages" name="pages" placeholder="number of pages" required>
           </div>
           <fieldset class="modal__fieldset">
             <legend class="modal__legend">Have you already read this book?</legend>            
@@ -39,7 +39,7 @@
           </fieldset>
           
           <button class="modal__button modal__button-submit" type="submit">Save</button>  
-          <button class="modal__button modal__button-close" type="submit">Cancel</button>  
+          <button class="modal__button modal__button-close" type="reset">Cancel</button>  
         </form>
 
         
