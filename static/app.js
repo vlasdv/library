@@ -132,9 +132,9 @@ const form = document.querySelector('.modal__form');
 const closeModalButton = document.querySelector('.modal__button-close');
 const submitModalButton = document.querySelector('.modal__button-submit');
 
-const formTitle = document.querySelector('#title');
-const formAuthor = document.querySelector('#author');
-const formPages = document.querySelector('#pages');
+const formTitle = document.querySelector('.modal__input--title');
+const formAuthor = document.querySelector('.modal__input--author');
+const formPages = document.querySelector('.modal__input--pages');
 const finished = document.getElementsByName('finished');
 
 newBookButton.onclick = function() {
