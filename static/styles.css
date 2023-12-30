@@ -159,7 +159,7 @@ button {
   font-size: 1rem;
 }
 
-.modal__input:invalid {
+.modal__input:user-invalid {
   border-color: #EA2027;
 }
 
