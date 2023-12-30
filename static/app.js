@@ -15,62 +15,41 @@ function addBookToLibrary(book) {
   myLibrary.push(book);
 }
 
-function addRandomBooks(numberOfBooks) {
-  for (let i = 0; i < numberOfBooks; i++) {
-    const book = new Book(`Nice book ${i+1}`, `Great author ${i+1}`, Math.floor(Math.random() * 490) + 10, false, id++);
-    addBookToLibrary(book);
-  }  
-  // console.log('books added:');
-  // for (const book of myLibrary) {
-  //   console.log(`${book.title} ${book.author} ${book.pages}`);    
-  // }
-}
-
 function getLastNumber(arrayOfBooks) {
   let lastNumber = 0;
   if (arrayOfBooks.length > 0) {
     const book = arrayOfBooks.slice(-1)[0];
     lastNumber = +book.title.split(' ').slice(-1)[0];
-    // console.log(lastNumber);
   }
   return lastNumber;
 }
 
-addRandomBooks(10);
-
-function makeListItemWithAddBookButton() {
-  const listElement = document.createElement('li');
-  listElement.classList.add('books__list');
-  const addBookButton = document.createElement('button');
-  addBookButton.classList.add('books__button', 'books__button--add-book');
-  addBookButton.textContent = 'add book';
-  addBookButton.addEventListener('click', function() {
-    addRandomBooks(1);
-    console.log(myLibrary.length);
-    displayBooks(myLibrary);
-  });
-  listElement.appendChild(addBookButton);
-  return listElement;
+function addRandomBooks(numberOfBooks) {
+  for (let i = 0; i < numberOfBooks; i++) {
+    const book = new Book(`Nice book ${i+1}`, `Great author ${i+1}`, Math.floor(Math.random() * 490) + 10, false, id++);
+    addBookToLibrary(book);
+  }  
 }
 
 function displayBooks(arrayOfBooks) {
   bookList.replaceChildren();
   console.log(myLibrary.length);
-  // for (const [index, book] of arrayOfBooks.entries()) {  
   for (let i = arrayOfBooks.length - 1; i >= 0; i--) {
     const book = arrayOfBooks[i];
-    // add li element 'book'
+    
+    // Create list item and article that will contain all book information
+
     const listElement = document.createElement('li');
     listElement.classList.add('book');
-    // add article element inside 'book__article'
     const bookArticle = document.createElement('article');
     bookArticle.classList.add('book__article');
     listElement.appendChild(bookArticle);
     
+    // Create div element that will contain all of text labels 
+
     const textsDiv = document.createElement('div');
     textsDiv.classList.add('book__texts');
 
-    // add p elements for title, author, pages and reading status 'book__*'
     const titleLabel = document.createElement('h4');
     titleLabel.classList.add('book__label');
     titleLabel.textContent = 'Title:';
@@ -98,10 +77,11 @@ function displayBooks(arrayOfBooks) {
 
     textsDiv.append(titleLabel, title, authorLabel, author, pagesLabel, pages);
     
+    // Create div that will contain all buttons and related items 
+
     const buttonsDiv = document.createElement('div');
     buttonsDiv.classList.add('book__buttons');
-
-    // button to finish 'book__button' (book__button--disabled)
+    
     const finish = document.createElement('button');
     finish.textContent = book.finished ? 'Read again' : 'Finish';
     finish.classList.add('book__button');                    
@@ -116,7 +96,6 @@ function displayBooks(arrayOfBooks) {
       displayBooks(myLibrary);   
     });
 
-    // button to delete 'book__button book__button--red
     const deleteBook = document.createElement('button');    
     deleteBook.textContent = 'Delete';
     deleteBook.classList.add('book__button', 'book__button--delete');
@@ -128,10 +107,9 @@ function displayBooks(arrayOfBooks) {
         displayBooks(myLibrary);      
       }
     });
-    buttonsDiv.append(finished, finish, deleteBook);
-    
-    bookArticle.append(textsDiv, buttonsDiv);
 
+    buttonsDiv.append(finished, finish, deleteBook);    
+    bookArticle.append(textsDiv, buttonsDiv);
     bookList.appendChild(listElement);
   }
 }
@@ -145,9 +123,11 @@ function getBookIndexInArray(bookToSearch, array) {
   return null;
 }
 
+addRandomBooks(10);
 displayBooks(myLibrary);
 
-// Get the modal
+// Functions related to modal for adding a new book
+
 const modal = document.querySelector('.modal');
 const form = document.querySelector('.modal__form');
 const closeModalButton = document.querySelector('.modal__button-close');
@@ -158,12 +138,10 @@ const formAuthor = document.querySelector('#author');
 const formPages = document.querySelector('#pages');
 const finished = document.getElementsByName('finished');
 
-// When the user clicks on the button, open the modal 
 newBookButton.onclick = function() {
   modal.style.display = 'block';
 }
 
-// When the user clicks on <span> (x), close the modal
 closeModalButton.onclick = function() {
   dismissForm(form);
 }
