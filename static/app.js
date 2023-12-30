@@ -102,7 +102,6 @@ function displayBooks(arrayOfBooks) {
       const toDelete = getBookIndexInArray(book, myLibrary);  
       if (toDelete !== null) {
         myLibrary.splice(toDelete, 1);
-        // console.log('deleted');
         displayBooks(myLibrary);      
       }
     });
@@ -153,10 +152,9 @@ window.onclick = function(event) {
 }
 
 formPages.addEventListener('input', function() {
-  formPages.pattern = '^[1-9][0-9]*$';  
+  formPages.pattern = '^[1-9][0-9]*$';    
   formPages.setCustomValidity('');  
-  if (!formPages.checkValidity()) {
-    console.log('1');
+  if (!formPages.checkValidity()) {    
     formPages.setCustomValidity('expected whole positive number > 0');
   } 
 });
@@ -172,8 +170,7 @@ form.addEventListener('submit', function(event) {
   const book = new Book(formTitle.value, formAuthor.value, formPages.value, finishedValue, id++);
   addBookToLibrary(book);  
   displayBooks(myLibrary);
-  dismissForm(form);
-  // }  
+  dismissForm(form);  
 });
 
 function dismissForm(form) {
