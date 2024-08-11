@@ -1,7 +1,6 @@
 const bookList = document.querySelector('.books');
 const newBookButton = document.querySelector('.container__button');
-const myLibrary = [];
-// let id = 0;
+// const myLibrary = [];
 
 class Book {
   static id = 0;
@@ -16,27 +15,32 @@ class Book {
 
 class Library {
   libraryArray = [];
-}
 
-function addBookToLibrary(book) {
-  myLibrary.push(book);
-}
-
-function getLastNumber(arrayOfBooks) {
-  let lastNumber = 0;
-  if (arrayOfBooks.length > 0) {
-    const book = arrayOfBooks.slice(-1)[0];
-    lastNumber = +book.title.split(' ').slice(-1)[0];
+  addBookToLibrary(book) {
+    this.libraryArray.push(book);
   }
-  return lastNumber;
+
+  addRandomBooks(numberOfBooks) {
+    for (let i = 0; i < numberOfBooks; i++) {
+      const book = new Book(`Nice book ${i+1}`, `Great author ${i+1}`, Math.floor(Math.random() * 490) + 10, false, Book.id++);
+      this.addBookToLibrary(book);
+    }  
+  }
+
+  getBookIndex(bookToSearch) {
+    for (let [i, currentBook] of this.libraryArray.entries()) {
+      if (currentBook.id === bookToSearch.id) {
+        return i;
+      }
+    }
+    return null;
+  }
 }
 
-function addRandomBooks(numberOfBooks) {
-  for (let i = 0; i < numberOfBooks; i++) {
-    const book = new Book(`Nice book ${i+1}`, `Great author ${i+1}`, Math.floor(Math.random() * 490) + 10, false, Book.id++);
-    addBookToLibrary(book);
-  }  
-}
+let library = new Library();
+library.addRandomBooks(10);
+displayBooks(library.libraryArray);
+
 
 function displayBooks(arrayOfBooks) {
   bookList.replaceChildren();  
@@ -96,20 +100,20 @@ function displayBooks(arrayOfBooks) {
     };    
 
     finish.addEventListener('click', function() {      
-      const toFinish = getBookIndexInArray(book, myLibrary);
+      const toFinish = library.getBookIndex(book);
       finish.classList.toggle('book__button--disabled');
-      myLibrary[toFinish].finished = !myLibrary[toFinish].finished;            
-      displayBooks(myLibrary);   
+      library.libraryArray[toFinish].finished = !library.libraryArray[toFinish].finished;            
+      displayBooks(library.libraryArray);   
     });
 
     const deleteBook = document.createElement('button');    
     deleteBook.textContent = 'Delete';
     deleteBook.classList.add('book__button', 'book__button--delete');
     deleteBook.addEventListener('click', function() {    
-      const toDelete = getBookIndexInArray(book, myLibrary);  
+      const toDelete = library.getBookIndex(book);  
       if (toDelete !== null) {
-        myLibrary.splice(toDelete, 1);
-        displayBooks(myLibrary);      
+        library.libraryArray.splice(toDelete, 1);
+        displayBooks(library.libraryArray);      
       }
     });
 
@@ -118,18 +122,6 @@ function displayBooks(arrayOfBooks) {
     bookList.appendChild(listElement);
   }
 }
-
-function getBookIndexInArray(bookToSearch, array) {
-  for (let [i, currentBook] of array.entries()) {
-    if (currentBook.id === bookToSearch.id) {
-      return i;
-    }
-  }
-  return null;
-}
-
-addRandomBooks(10);
-displayBooks(myLibrary);
 
 // Functions related to modal for adding a new book
 
@@ -175,8 +167,8 @@ form.addEventListener('submit', function(event) {
     }  
   } 
   const book = new Book(formTitle.value, formAuthor.value, formPages.value, finishedValue, Book.id++);
-  addBookToLibrary(book);  
-  displayBooks(myLibrary);
+  library.addBookToLibrary(book);  
+  displayBooks(library.libraryArray);
   dismissForm(form);  
 });
 
