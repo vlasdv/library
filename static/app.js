@@ -1,6 +1,5 @@
 const bookList = document.querySelector('.books');
 const newBookButton = document.querySelector('.container__button');
-// const myLibrary = [];
 
 class Book {
   static id = 0;
@@ -41,6 +40,7 @@ let library = new Library();
 library.addRandomBooks(10);
 displayBooks(library.libraryArray);
 
+// Create UI
 
 function displayBooks(arrayOfBooks) {
   bookList.replaceChildren();  
