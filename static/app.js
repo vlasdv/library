@@ -4,7 +4,7 @@ const myLibrary = [];
 let id = 0;
 
 class Book {
-  constructor(title, author, pages, finished=false, id) {
+  constructor(title='Unknown', author='Unknown', pages='0', finished=false, id) {
     this.title = title;
     this.author = author;
     this.pages = pages;
