@@ -113,7 +113,7 @@ function displayBooks(arrayOfBooks) {
 }
 
 function getBookIndexInArray(bookToSearch, array) {
-  for (let [i, currentBook] of myLibrary.entries()) {
+  for (let [i, currentBook] of array.entries()) {
     if (currentBook.id === bookToSearch.id) {
       return i;
     }
