@@ -1,9 +1,10 @@
 const bookList = document.querySelector('.books');
 const newBookButton = document.querySelector('.container__button');
 const myLibrary = [];
-let id = 0;
+// let id = 0;
 
 class Book {
+  static id = 0;
   constructor(title='Unknown', author='Unknown', pages='0', finished=false, id) {
     this.title = title;
     this.author = author;
@@ -11,6 +12,10 @@ class Book {
     this.finished = finished;
     this.id = id;
   }
+}
+
+class Library {
+  libraryArray = [];
 }
 
 function addBookToLibrary(book) {
@@ -28,7 +33,7 @@ function getLastNumber(arrayOfBooks) {
 
 function addRandomBooks(numberOfBooks) {
   for (let i = 0; i < numberOfBooks; i++) {
-    const book = new Book(`Nice book ${i+1}`, `Great author ${i+1}`, Math.floor(Math.random() * 490) + 10, false, id++);
+    const book = new Book(`Nice book ${i+1}`, `Great author ${i+1}`, Math.floor(Math.random() * 490) + 10, false, Book.id++);
     addBookToLibrary(book);
   }  
 }
@@ -169,7 +174,7 @@ form.addEventListener('submit', function(event) {
       finishedValue = Boolean(+radio.value);
     }  
   } 
-  const book = new Book(formTitle.value, formAuthor.value, formPages.value, finishedValue, id++);
+  const book = new Book(formTitle.value, formAuthor.value, formPages.value, finishedValue, Book.id++);
   addBookToLibrary(book);  
   displayBooks(myLibrary);
   dismissForm(form);  
